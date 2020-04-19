@@ -1,0 +1,60 @@
+{
+    "name": "setherator/variables",
+    "type": "library",
+    "description": "The Setherator Variable management library. Manages and processes variable values with some additional magic.",
+    "keywords": [
+        "variables",
+        "setherator"
+    ],
+    "homepage": "https://github.com/setherator/variables",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Aurimas Niekis",
+            "email": "aurimas@niekis.lt"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/setherator/variables",
+        "source": "https://github.com/setherator/variables"
+    },
+    "require": {
+        "php": "^7.4||^8.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^9",
+        "friendsofphp/php-cs-fixer": "^2",
+        "infection/infection": "^0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Setherator\\Variables\\": "src"
+        },
+        "files": ["src/functions.php"],
+        "classmap": [
+            "src/"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Setherator\\Variables\\Tests\\": "tests"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html build/html/",
+        "cs-check": "php-cs-fixer fix --dry-run --diff --diff-format udiff",
+        "cs-fix": "php-cs-fixer fix",
+        "test-ci": "phpunit --coverage-text --coverage-clover=coverage.clover",
+        "test-infection": "infection --min-msi=48 --threads=4 --only-covered",
+        "ci-run": ["@cs-check", "@test-ci", "@test-infection"]
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    },
+    "config": {
+        "sort-packages": true
+    }
+}
