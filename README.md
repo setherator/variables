@@ -241,7 +241,7 @@ A function to wrap your closure and inject context from `Variables::getContext()
 function context(Closure $closure, ...$args): Closure;Cacheable
 ```
 
-Will return your closure wrapped with context variables + extra `$args` as arguments. `$args` will be evaluated using `Variables::evalValue()` function. It will behave as normal Variable value.
+Will return your closure wrapped with context variables + extra `$args` as arguments. `$args` will be evaluated using `Variables::parseValue()` function. It will behave as normal Variable value.
 
 ```php
 [
@@ -260,7 +260,7 @@ Will return your closure wrapped with context variables + extra `$args` as argum
 
 ### Factory
 
-A function to prevent your closue value from getting cached. Your closure will be called everytime value is accessed. `$args` will be passed as arguments to closure function. `$args` will be evaluated using `Variables::evalValue()` function. It will behave as normal Variable value.
+A function to prevent your closue value from getting cached. Your closure will be called everytime value is accessed. `$args` will be passed as arguments to closure function. `$args` will be evaluated using `Variables::parseValue()` function. It will behave as normal Variable value.
 
 
 ```php
@@ -305,7 +305,7 @@ Will return an array of all `$args` evaluated.
 
 ### Logic
 
-A function to evaluate condition and decide which value to use. `$condtion`, `$true`, `$false` are evaluated using `Variables::evalValue()` function.
+A function to evaluate condition and decide which value to use. `$condtion`, `$true`, `$false` are evaluated using `Variables::parseValue()` function.
 
 ```php
 function logic($condition, $true, $false, bool $strict = false): Closure;
@@ -348,6 +348,17 @@ Will return a closure which will pass `$args` evaluated as arguments to Closure.
 ```
 
 **Attention**: Passthrough returned closure does not accept any arguments.
+
+### First
+
+A function which return a first truthfull value from arguments. `$args` will be evaluated using `Variables::parseValue()` function.
+
+```php
+function first(...$args);
+```
+
+**Tip:** To evaluate at variable get time surround the function with closure: `fn() => first(/* ... */)`.
+
 
 ## Value Parsers
 

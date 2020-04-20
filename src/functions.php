@@ -68,3 +68,14 @@ function passthrough(Closure $closure, ...$args): Closure
 {
     return fn () => $closure(...all(...$args));
 }
+
+function first(...$args)
+{
+    foreach (all(...$args) as $item) {
+        if ($item) {
+            return $item;
+        }
+    }
+
+    return null;
+}

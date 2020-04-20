@@ -121,7 +121,7 @@ class Variables
     public function parseValue($value)
     {
         if ($value instanceof Closure || $value instanceof NonCacheableClosure) {
-            return $value();
+            return $this->parseValue($value());
         }
 
         foreach ($this->valueParsers as $valueParser) {
