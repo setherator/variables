@@ -53,6 +53,11 @@ function all(...$args): array
     return $result;
 }
 
+function allFn(...$args): Closure
+{
+    return fn () => all(...$args);
+}
+
 function logic($condition, $true, $false, bool $strict = false): Closure
 {
     return static function () use ($condition, $true, $false, $strict) {
@@ -90,4 +95,9 @@ function first(...$args)
     }
 
     return null;
+}
+
+function firstFn(...$args): Closure
+{
+    return fn () => first(...$args);
 }

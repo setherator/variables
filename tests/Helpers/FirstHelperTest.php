@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setherator\Variables\Tests\Helpers;
 
 use function Setherator\Variables\first;
+use function Setherator\Variables\firstFn;
 
 /**
  * @author Aurimas Niekis <aurimas@niekis.lt>
@@ -24,11 +25,11 @@ class FirstHelperTest extends BaseHelperTest
 
         $this->assertEquals(
             'bar',
-            first(
+            firstFn(
                 0,
                 'bar',
                 1
-            )
+            )()
         );
 
         $this->assertNull(

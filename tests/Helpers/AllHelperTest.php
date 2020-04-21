@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Setherator\Variables\Tests\Helpers;
 
 use function Setherator\Variables\all;
+use function Setherator\Variables\allFn;
 use function Setherator\Variables\factory;
 use function Setherator\Variables\ref;
 
@@ -26,11 +27,11 @@ class AllHelperTest extends BaseHelperTest
                 fn () => ref('foo'),
                 fn () => ref('bar'),
                 'fooBar',
-                all(
+                allFn(
                     fn () => ref('foo'),
                     fn () => ref('bar'),
                     'fooBar'
-                )
+                )()
             )
         );
     }

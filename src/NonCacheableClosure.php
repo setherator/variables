@@ -20,7 +20,8 @@ class NonCacheableClosure
 
     public function __invoke()
     {
-        return $this->closure->call(new class() {
-        });
+        $closure = $this->closure;
+
+        return $closure();
     }
 }

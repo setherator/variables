@@ -314,7 +314,7 @@ Will return an array of all `$args` evaluated.
 ]
 ```
 
-**Tip:** To evaluate all values at variable get time surround the function with closure: `fn() => all(/* ... */)`.
+**Tip:** To evaluate all values at variable get time use function: `allFn(/* ... */)`.
 
 ### Logic
 
@@ -370,7 +370,7 @@ A function which return a first truthfull value from arguments. `$args` will be 
 function first(...$args);
 ```
 
-**Tip:** To evaluate at variable get time surround the function with closure: `fn() => first(/* ... */)`.
+**Tip:** To evaluate at variable get time use function: `firstFn(/* ... */)`.
 
 
 ## Value Parsers
