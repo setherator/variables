@@ -7,6 +7,8 @@ namespace Setherator\Variables\Tests\Helpers;
 use RuntimeException;
 use function Setherator\Variables\ref;
 use function Setherator\Variables\reference;
+use function Setherator\Variables\referenceFn;
+use function Setherator\Variables\refFn;
 use Setherator\Variables\Tests\Fixtures\StubbedVariables;
 
 /**
@@ -23,6 +25,12 @@ class ReferenceHelperTest extends BaseHelperTest
 
         $this->assertEquals('bar', ref('foo'));
         $this->assertEquals('foo', ref('bar', 'foo'));
+
+        $this->assertEquals('bar', referenceFn('foo')());
+        $this->assertEquals('foo', referenceFn('bar', 'foo')());
+
+        $this->assertEquals('bar', refFn('foo')());
+        $this->assertEquals('foo', refFn('bar', 'foo')());
 
         StubbedVariables::clearInstance();
 

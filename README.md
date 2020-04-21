@@ -105,6 +105,10 @@ $providedVariables = [
             fn() => 'Passthrough Factory: ' . ref('logic_factory'),
         )
     ),
+    'first' => first(
+        0,
+        'value'
+    ),
 ];
 
 
@@ -132,7 +136,8 @@ echo $variables->get('passthrough') . PHP_EOL;
 echo $variables->get('passthrough') . PHP_EOL;
 echo $variables->get('passthrough_factory') . PHP_EOL;
 echo $variables->get('passthrough_factory') . PHP_EOL;
-echo $variables->get('passthrough_factory') . PHP_EOL . PHP_EOL;
+echo $variables->get('passthrough_factory') . PHP_EOL;
+echo $variables->get('first') . PHP_EOL . PHP_EOL;
 
 // Print all computed values
 echo json_encode($variables->all(), JSON_PRETTY_PRINT) . PHP_EOL;
@@ -167,6 +172,7 @@ PASSTHROUGH: FACTORY CONDITION: FALSE
 PASSTHROUGH FACTORY: FACTORY CONDITION: TRUE
 PASSTHROUGH FACTORY: FACTORY CONDITION: FALSE
 PASSTHROUGH FACTORY: FACTORY CONDITION: TRUE
+value
 
 {
     "scalar": "foo",
@@ -185,7 +191,8 @@ PASSTHROUGH FACTORY: FACTORY CONDITION: TRUE
     "logic_strict": "Condition: false",
     "logic_factory": "Factory Condition: false",
     "passthrough": "PASSTHROUGH: FACTORY CONDITION: FALSE",
-    "passthrough_factory": "PASSTHROUGH FACTORY: FACTORY CONDITION: TRUE"
+    "passthrough_factory": "PASSTHROUGH FACTORY: FACTORY CONDITION: TRUE",
+    "first": "value"
 }
 
 {
@@ -205,7 +212,8 @@ PASSTHROUGH FACTORY: FACTORY CONDITION: TRUE
     "logic_strict": "Condition: false",
     "logic_factory": {},
     "passthrough": "PASSTHROUGH: FACTORY CONDITION: FALSE",
-    "passthrough_factory": {}
+    "passthrough_factory": {},.
+    "first": {}
 }
 ```
 
@@ -223,7 +231,12 @@ function ref(string $name, $default = null);
 function reference(string $name, $default = null);
 ```
 
-**Tip:** To fetch value at variable get time surround the function with closure: `fn() => ref('foo.bar')`.
+To fetch value at variable get time use these functions.
+
+```php
+function refFn(string $name, $default = null);
+function referenceFn(string $name, $default = null);
+```
 
 ### Enviroment variable
 

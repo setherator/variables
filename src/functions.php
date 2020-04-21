@@ -18,9 +18,19 @@ function ref(string $name, $default = null)
     return reference($name, $default);
 }
 
+function refFn(string $name, $default = null)
+{
+    return fn () => ref($name, $default);
+}
+
 function reference(string $name, $default = null)
 {
     return Variables::getInstance()->get($name, $default);
+}
+
+function referenceFn(string $name, $default = null)
+{
+    return fn () => reference($name, $default);
 }
 
 function context(Closure $closure, ...$args): Closure
@@ -71,9 +81,11 @@ function passthrough(Closure $closure, ...$args): Closure
 
 function first(...$args)
 {
-    foreach (all(...$args) as $item) {
-        if ($item) {
-            return $item;
+    foreach ($args as $value) {
+        $value = Variables::getInstance()->parseValue($value);
+
+        if ($value) {
+            return $value;
         }
     }
 

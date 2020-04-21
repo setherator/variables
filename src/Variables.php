@@ -126,7 +126,9 @@ class Variables
 
         foreach ($this->valueParsers as $valueParser) {
             if (true === $valueParser->supports($value)) {
-                return $valueParser->parseValue($value, $this);
+                return $this->parseValue(
+                    $valueParser->parseValue($value, $this)
+                );
             }
         }
 
