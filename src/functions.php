@@ -13,24 +13,28 @@ function env(string $name, $default = null)
     return false !== $result ? $result : $default;
 }
 
-function ref(string $name, $default = null)
+function ref(string $name, $default = null, bool $raw = false)
 {
-    return reference($name, $default);
+    return reference($name, $default, $raw);
 }
 
-function refFn(string $name, $default = null)
+function refFn(string $name, $default = null, bool $raw = false)
 {
-    return fn () => ref($name, $default);
+    return fn () => ref($name, $default, $raw);
 }
 
-function reference(string $name, $default = null)
+function reference(string $name, $default = null, bool $raw = false)
 {
+    if ($raw) {
+        return Variables::getInstance()->getRaw($name, $default);
+    }
+
     return Variables::getInstance()->get($name, $default);
 }
 
-function referenceFn(string $name, $default = null)
+function referenceFn(string $name, $default = null, bool $raw = false)
 {
-    return fn () => reference($name, $default);
+    return fn () => reference($name, $default, $raw);
 }
 
 function context(Closure $closure, ...$args): Closure

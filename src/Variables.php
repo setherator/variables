@@ -101,6 +101,15 @@ class Variables
         return $this;
     }
 
+    public function getRaw(string $name, $default = null)
+    {
+        if (false === isset($this->variables[$name])) {
+            return $default;
+        }
+
+        return $this->variables[$name];
+    }
+
     public function get(string $name, $default = null)
     {
         if (false === isset($this->variables[$name])) {

@@ -71,9 +71,14 @@ class VariablesTest extends TestCase
         $this->assertNull($variables->get('foo'));
         $this->assertFalse($variables->has('foo'));
 
-        $variables->set('foo', 'bar');
+        $barClosure = fn () => 'bar';
+        $variables->set('foo', $barClosure);
 
+        $this->assertEquals($barClosure, $variables->getRaw('foo'));
         $this->assertEquals('bar', $variables->get('foo'));
+
+        // Value will evaluated after first normal get
+        $this->assertEquals('bar', $variables->getRaw('foo'));
         $this->assertTrue($variables->has('foo'));
 
         $variables->remove('foo');

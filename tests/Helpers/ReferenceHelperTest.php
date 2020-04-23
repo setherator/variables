@@ -18,7 +18,10 @@ class ReferenceHelperTest extends BaseHelperTest
 {
     public function testReference(): void
     {
+        $closure = fn () => 'foo';
+
         $this->variables->set('foo', 'bar');
+        $this->variables->set('closure', $closure);
 
         $this->assertEquals('bar', reference('foo'));
         $this->assertEquals('foo', reference('bar', 'foo'));
@@ -31,6 +34,13 @@ class ReferenceHelperTest extends BaseHelperTest
 
         $this->assertEquals('bar', refFn('foo')());
         $this->assertEquals('foo', refFn('bar', 'foo')());
+
+        $this->assertEquals($closure, reference('closure', null, true));
+        $this->assertEquals('foo', reference('closure', null));
+        $this->assertEquals('foo', reference('closure', null, true));
+
+        $defaultClosure = fn () => 'default';
+        $this->assertEquals($defaultClosure, reference('non-existing', $defaultClosure, true));
 
         StubbedVariables::clearInstance();
 

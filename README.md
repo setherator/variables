@@ -224,18 +224,18 @@ A variable value can be any scalar, array, object type but also closure which wi
 
 ### Reference
 
-A function to fetch variable value from Variables instance. If not found `$default = null` will be returned.
+A function to fetch variable value from Variables instance. If not found `$default = null` will be returned. If raw value before evaluation required use `$raw = true`.
 
 ```php
-function ref(string $name, $default = null);
-function reference(string $name, $default = null);
+function ref(string $name, $default = null, bool $raw = false);
+function reference(string $name, $default = null, bool $raw = false);
 ```
 
 To fetch value at variable get time use these functions.
 
 ```php
-function refFn(string $name, $default = null);
-function referenceFn(string $name, $default = null);
+function refFn(string $name, $default = null, bool $raw = false);
+function referenceFn(string $name, $default = null, bool $raw = false);
 ```
 
 ### Enviroment variable
